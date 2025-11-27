@@ -52,9 +52,19 @@ After ensuring you are connected to the internal ACC/UB network (you can verify 
 
   `ssh example@hpc-nodegpu01.acc-ub.local`
 
-- For a virtual machine on the HCI cluster, connect either using [SSH](https://en.wikipedia.org/wiki/Secure_Shell) to the domain or IP address of the VM you requested or, if the application you requested has a web UI, connect directly to it at `http://10.23.21.example'`.
+- For a virtual machine on the HCI cluster, connect either using [SSH](https://en.wikipedia.org/wiki/Secure_Shell) to the domain or IP address of the VM you requested or, if the application you requested has a web UI, connect directly to it at `http://10.23.21.<example>'`.
 
 If you encounter issues with connecting to the infrastructure (after your access request has been approved and confirmed!), please contact the ACC administrators.
+
+## Module system
+
+Scientific software tools and libraries are globally available to all users through a [modules system](https://hpc-wiki.info/hpc/Modules), based on the [Environment Modules](https://modules.readthedocs.io/en/latest/index.html) package.
+
+To **show** all available software modules, run `module avail`.
+
+The ones listed under `/mnt/modules/modulefiles` are the ones installed/maintained by the ACC team. To activate a module, use the `module enable` command followed by its name. For example: `module enable mpi/openmpi/5.0.9` to enable the OpenMPI implementation, version 5.0.9, compiled by us, with optimizations specific for the HPC system.
+
+Multiple modules can be active at the same time. To see which modules you currently have active, use `module list`. To unload/deactivate all previously enabled modules, run `module purge`.
 
 ## Installing tools
 
