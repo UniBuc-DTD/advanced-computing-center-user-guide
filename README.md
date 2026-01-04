@@ -92,6 +92,24 @@ If your program/tool is using the [Message-Passing Interface](https://en.wikiped
 
 Most programs with support for parallelization will also provide instructions for how to run the software on a cluster with Slurm.
 
+### Using `mpi4py` (MPI for Python)
+
+If you use [the Python bindings for MPI](https://mpi4py.readthedocs.io/en/stable/), you should use them together with an MPI implementation available as a module on the HPC system (i.e. OpenMPI or MPICH). If you use `conda` to manage your packages, you might find it automatically installs a generic MPI implementation, which will lead to errors, such as:
+
+```
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIx stopped checking at the first component that it did not find.
+
+Host:      hpc-ctrl01.acc-ub.local
+Framework: psec
+Component: munge
+```
+
+You should follow [these instructions from `conda-forge`](https://conda-forge.org/docs/user/tipsandtricks/#using-external-message-passing-interface-mpi-libraries) on how to use an external MPI library. You will have to run a command such as `conda install "openmpi=X.Y.*=external_*"` or `conda install "mpich=X.Y.*=external_*`, where `X.Y` should match the major and minor version numbers for your selected MPI implementation module. This will also require you to have the corresponding module active whenever you run a Python program which uses `mpi4py`.
+
 ## Using the GPUs on the HPC-GPU node
 
 The GPU node is equipped with a total of 8 $\times$ NVIDIA H100 cards, each with 80 GiB of VRAM. However, be aware that some of the GPUs are dedicated/reserved for certain faculties or research groups, so not all of them might be available at all times for interactive or batch use. If unsure, please contact prof. Ciprian Păduraru, who administers the GPU node.
