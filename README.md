@@ -34,13 +34,28 @@ When requesting access, please specify **which kind** of resource(s) you need ac
 
 ## Connecting to the resources
 
-The computational resources are available **exclusively from the internal UB network** (e.g. from the internet or Wi-Fi at the faculty/office/rectorate).
+The computational resources of the ACC are available primarily **from the internal UB network** (e.g. from the internet or Wi-Fi at the faculty/office/rectorate).
 
-In exceptional situations, you may request a [Virtual Private Network (VPN)](https://en.wikipedia.org/wiki/Virtual_private_network) account to be able to access them remotely over a secured connection.
+In well-motivated situations, you may request the provisioning of a [Virtual Private Network (VPN)](https://en.wikipedia.org/wiki/Virtual_private_network) account to be able to access the compute nodes remotely over a secured connection. You can request VPN access from the ACC administrators, before or after your user account has been created. The same credentials will be used for the VPN connection as for your main ACC user account.
 
-The VPN solution will be based either on Fortinet (for accessing the internal ACC network only) or Cisco (for accessing the whole UB intranet):
-- For Fortinet, follow the received instructions to install and configure the latest stable version of [FortiClient](https://www.fortinet.com/support/product-downloads).
-- For Cisco, follow the instructions received by e-mail to download and install the latest version of the Cisco AnyConnect Secure Mobility Client.
+_Note_: If you have a UniBuc-provided VPN account, based on the Cisco AnyConnect client, you can use that as well in order to connect securely to the ACC. The UniBuc VPN is managed by the IT&C Department, not by the ACC-UB infrastructure administrators.
+
+### Forti VPN setup
+
+The ACC VPN is based on [Fortinet](https://www.fortinet.com/) technology. You must install **the latest stable version of [FortiClient](https://www.fortinet.com/support/product-downloads)** for your operating system (choose the "FortiClient VPN-only" variant).
+
+Once the VPN client is installed, open it and configure a new VPN connection:
+
+- Connection Name: `ACC-UB`
+- Remote Gateway: `vpn-acc.unibuc.ro:44398`
+- Customize Port: `44398`
+- Username and password: the credentials you've been provided by the ACC administrators when your account was created
+
+See also the image below.
+
+![FortiClient VPN configuration](images/forticlient-config.png)
+
+### Networked access
 
 After ensuring you are connected to the internal ACC/UB network (you can verify this by running a command such as [`ping hpc-ctrl01.acc-ub.local`](https://www.lifewire.com/ping-command-2618099)), there are differnet ways for accessing the internal resources:
 
