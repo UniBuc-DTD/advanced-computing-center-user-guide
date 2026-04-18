@@ -1,0 +1,10 @@
+site_name: "ACC-UB User Guide"
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - CPU cluster: hpc-cpu.md
+  - GPU node: hpc-gpu.md
+  - Virtual machines platform: hci.md
+  - Storage: storage.md
+  - VPN access: vpn.md
+theme: readthedocs

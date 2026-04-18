@@ -1,0 +1,9 @@
+[project]
+name = "advanced-computing-center-user-guide"
+version = "0.1.0"
+description = "User guide for the Advanced Computing Center"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "mkdocs>=1.6.1",
+]
