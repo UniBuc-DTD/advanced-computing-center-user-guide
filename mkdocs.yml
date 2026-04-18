@@ -4,6 +4,7 @@ site_author: 'ACC-UB system administrators'
 docs_dir: docs/
 repo_name: 'UniBuc-DTD/advanced-computing-center-user-guide'
 repo_url: 'https://github.com/UniBuc-DTD/advanced-computing-center-user-guide'
+edit_uri: 'edit/main/docs'
 nav:
   - Home: index.md
   - Getting started: getting-started.md
