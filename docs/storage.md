@@ -4,7 +4,7 @@ This page provides an overview of the data storage components of the ACC.
 
 ## Storage-Area Network
 
-The primary data store for the ACC is an [HPE Alletra MP B10000](https://www.hpe.com/us/en/alletra-storage-mp-b10000.html) node, providing 50 TiB+ of all-flash block storage, with the possibility of expansion. The volumes are exported using NVMe-over-TCP, over redundant 25 Gbps link (meaning up to 3 GiB/s read/write speeds, in the best case scenario).
+The primary data store for the ACC is an [HPE Alletra MP B10000](https://www.hpe.com/us/en/alletra-storage-mp-b10000.html) node, providing ~200 TiB of all-flash block storage, with the possibility of expansion. The volumes are exported using NVMe-over-TCP, over redundant 25 Gbps link (meaning up to 3 GiB/s read/write speeds, in the best case scenario).
 
 The HCI cluster also features a vSphere-managed [vSAN](https://www.vmware.com/products/cloud-infrastructure/vsan) storage network, with 200+ TiB of high-speed all-flash storage. This data store is available only for virtualization-based workloads.
 
