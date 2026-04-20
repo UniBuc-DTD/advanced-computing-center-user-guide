@@ -1,0 +1,15 @@
+site_name: "ACC-UB User Guide"
+site_description: 'User guide for the Advanced Computing Center'
+site_author: 'ACC-UB system administrators'
+docs_dir: docs/
+repo_url: 'https://github.com/UniBuc-DTD/advanced-computing-center-user-guide'
+edit_uri: 'edit/main/docs'
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - CPU cluster: hpc-cpu.md
+  - GPU node: hpc-gpu.md
+  - Virtual machines platform: hci.md
+  - Storage: storage.md
+  - VPN access: vpn.md
+theme: readthedocs
