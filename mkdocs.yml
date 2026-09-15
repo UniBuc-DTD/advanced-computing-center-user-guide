@@ -13,6 +13,7 @@ nav:
   - Storage: storage.md
   - Network: network.md
   - VPN access: vpn.md
+  - Acknowledgement: acknowledgement.md
 theme: readthedocs
 markdown_extensions:
   - admonition

@@ -6,6 +6,8 @@ If you're not yet using the ACC and want to find out how it can help you, check 
 
 Please also consult [the official ACC-UB access policy](https://unibucro0.sharepoint.com/:b:/r/sites/DirectiapentruTransformareDigitala/Documente%20partajate/ACC-UB_Policy_v1.0_EN.pdf?d=w3aee8b7b93684df7a3670b34abc16530&csf=1&web=1&e=dIP4kV), which has been approved by the University's Administration Council (_Consiliul de Administrație_) on 22.07.2026.
 
+If you use the ACC-UB infrastructure has helped support your work, please include an appropriate [acknowledgement](acknowledgement.md) text.
+
 <div style="padding: 2rem 1rem; display: flex; flex-direction: row; justify-content: center">
     <div style="margin-right: 8px">
         <a href="https://unibuc.ro/" target="_blank" rel="noopener noreferer">
