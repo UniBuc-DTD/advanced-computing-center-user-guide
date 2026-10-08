@@ -26,9 +26,20 @@ The HPC-CPU nodes are divided into multiple Slurm **partitions** (queues), with 
 
 ![Slurm queues for CPU nodes](images/cpu-partitions-diagram.png)
 
+| Partition | Max nodes | Max job run time | Default job run time |
+| --------- | --- | --- | --- |
+| `debug` | 2 | 1 hour | 30 minutes |
+| `interactive` | 2 | 4 hours | 1h |
+| `cpu-wide` | 11 | 24 hours | 4h |
+| `cpu-medium` | 8 | 36 hours | 6h |
+| `cpu-standard` | 4 | 3 days | 8h |
+| `cpu-narrow` | 2 | 5 days | 24h |
+| `cpu-long` | 1 | 12 days | 24h |
+
+
 We recommend users to start with the most conservative configuration for their job (for example, it's best to start on the `debug` or `interactive` partition to make sure your job script works). Once you have an idea of how your workload scales, you can start running on the `cpu-wide` and `cpu-medium` queues. If your job requires a lot of time to finish and cannot be interrupted easily, use the `cpu-standard` or `cpu-narrow` queues.
 
-**Please note that, while we do our best to ensure 100% uptime of the compute cluster (including through hardware redundancy), unexpected situations are always a possibility.** We encourage users to use [checkpointing](https://hpc.nmsu.edu/discovery/slurm/backfill-and-checkpoints/#_introduction_to_checkpoint) and regularly save their jobs' running state to avoid data loss.
+**Please note that, while we do our best to ensure 100% uptime of the compute cluster (including through hardware redundancy), unexpected situations are always a possibility.** We encourage users to use [checkpointing](https://hpc.nmsu.edu/discovery/slurm/backfill-and-checkpoints/#_introduction_to_checkpoint) and regularly save their jobs' running state to avoid data loss. Slurm can also be configured to [send a custom interrupt signal](https://docs.gwdg.de/doku.php?id=en:services:application_services:high_performance_computing:running_jobs_slurm:signals) to your job script before the time limit is reached, to allow it to save its progress and stop.
 
 ## GPU node
 
