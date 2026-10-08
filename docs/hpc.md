@@ -20,6 +20,16 @@ The compute system currently consists of 22 identical nodes, with the following 
 
 The nodes `ctrl01` and `db01` are used for additional tasks (SLURM controller, SLURM accounting database, NFS v4.2 server etc), so parts of their cores and memory are reserved for system tasks.
 
+### CPU partitions
+
+The HPC-CPU nodes are divided into multiple Slurm **partitions** (queues), with different characteristics, as shown in the figure and table below.
+
+![Slurm queues for CPU nodes](images/cpu-partitions-diagram.png)
+
+We recommend users to start with the most conservative configuration for their job (for example, it's best to start on the `debug` or `interactive` partition to make sure your job script works). Once you have an idea of how your workload scales, you can start running on the `cpu-wide` and `cpu-medium` queues. If your job requires a lot of time to finish and cannot be interrupted easily, use the `cpu-standard` or `cpu-narrow` queues.
+
+**Please note that, while we do our best to ensure 100% uptime of the compute cluster (including through hardware redundancy), unexpected situations are always a possibility.** We encourage users to use [checkpointing](https://hpc.nmsu.edu/discovery/slurm/backfill-and-checkpoints/#_introduction_to_checkpoint) and regularly save their jobs' running state to avoid data loss.
+
 ## GPU node
 
 ### Hardware configuration
