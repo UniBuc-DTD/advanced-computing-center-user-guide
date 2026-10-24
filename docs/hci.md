@@ -8,7 +8,7 @@ The 10 nodes of the HCI cluster each have the following specs:
 
 - **CPU**: AMD EPYC 7513 (128 hardware threads)
 - **Memory**: 2 TiB of RAM
-- **Storage**: over 200 TiB available in vSAN, also connected to [the storage offered by HPE Alletra](storage.md).
+- **Storage**: over 200 TiB available through [vSAN](https://www.vmware.com/products/cloud-infrastructure/vsan), supplemented by [the storage offered by Alletra](storage.md).
 
 The nodes are all connected together in a high-availability cluster.
 
