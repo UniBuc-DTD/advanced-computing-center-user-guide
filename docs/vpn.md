@@ -6,7 +6,7 @@ We used to rely on Fortinet's proprietary IPsec-based VPN before, but it had too
 
 ## Setup guide
 
-1. Go to [https://vpn.acc.unibuc.ro](https://vpn.acc.unibuc.ro/) and choose _Login with Keycloak_.
+1. Go to [https://vpn.acc.unibuc.ro](https://vpn.acc.unibuc.ro/) and choose _Continue with Keycloak_.
 
     ![NetBird landing page](images/netbird-vpn-landing-page.png){ width="300" }
 
