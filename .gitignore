@@ -1,2 +1,5 @@
 # MkDocs build output
 /site/
+
+# Ignore MacOS-generated system files
+.DS_Store
