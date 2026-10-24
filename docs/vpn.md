@@ -1,50 +1,33 @@
-# Forti VPN setup
+# VPN access
 
-!!! warning
+This page describes how to access the ACC's resources through a [_virtual private network_](https://en.wikipedia.org/wiki/Virtual_private_network) (VPN). We use [NetBird](https://netbird.io/) for managing the connections and keys, which relies on [WireGuard](https://www.wireguard.com/) for encrypting the network traffic. [Keycloak](https://www.keycloak.org/) (`sso.acc.unibuc.ro`) is used to provide OIDC-based single sign-on, based on our [FreeIPA](https://www.freeipa.org/) account database. This solution is [open source](https://github.com/netbirdio/netbird), cross-platform (supports Windows, MacOS, Linux, Android and iOS), [secure](https://www.wireguard.com/protocol/) and [highly performant](https://www.wireguard.com/performance/).
 
-    Due to [the deprecation of SSL-VPN support by FortiGate in v7.6.3 and later](https://community.fortinet.com/fortigate-3/technical-tip-ssl-vpn-support-on-fortigate-models-189872),
-    we have switched to using FortiGate's [IPsec](https://en.wikipedia.org/wiki/IPsec)-based VPN implementation.
+We used to rely on Fortinet's proprietary IPsec-based VPN before, but it had too many limitations. The old instructions for configuring the FortiClient VPN are available [here](forti-vpn.md). We cannot guarantee the former VPN solution will still be available for long.
 
-    Unfortunately, the official FortiGate VPN Client for Linux [does **not** support IPsec VPN](https://community.fortinet.com/support-forum-92/forticlient-vpn-on-linux-ipsec-remote-access-vpn-not-available-fortios-7-6-6-225483), while the [strongSwan](https://strongswan.org/) client doesn't support [PAP](https://en.wikipedia.org/wiki/Password_Authentication_Protocol) over [EAP-TTLS](https://en.wikipedia.org/wiki/Extensible_Authentication_Protocol#EAP_Tunneled_Transport_Layer_Security_(EAP-TTLS)).
+## Setup guide
 
-    Linux users are requested to use [the agentless VPN service](https://vpn-acc.unibuc.ro/) or connect directly from UB's network while we work to find a more permanent solution.
+1. Go to [https://vpn.acc.unibuc.ro](https://vpn.acc.unibuc.ro/) and choose _Login with Keycloak_.
 
-The ACC VPN is based on [Fortinet](https://www.fortinet.com/) technology.
+    ![NetBird landing page](images/netbird-vpn-landing-page.png){ width="300" }
 
-## Agentless VPN
+2. Fill in your ACC user credentials and sign in.
 
-For quick, browser-based connections, go to [`vpn-acc.unibuc.ro`](https://vpn-acc.unibuc.ro) and log in with your ACC username and password.
+    ![Keycloak sign-in page](images/keycloak-sign-in-page.png){ width="300" }
 
-You can use the browser-based interface to access all ACC resources, including connecting to the HPC nodes using SSH.
+3. Follow the instructions shown on that page to download and install the appropriate [NetBird client](https://app.netbird.io/install) for your OS.
 
-## IPsec VPN
+    ![NetBird install page](images/netbird-install.png){ width="300" }
 
-You must install **the latest stable version of [FortiClient](https://www.fortinet.com/support/product-downloads)** for your operating system (you do not need to register; choose the "FortiClient VPN-only" variant). Unfortunately, as mentioned above, FortiClient **doesn't** support IPsec-based VPN connections on Linux.
+4. After starting the NetBird app, choose the _Self-hosted_ option and use `https://vpn.acc.unibuc.ro` as the URL.
 
-Once the VPN client is installed, open it and configure a new VPN connection:
+    ![NetBird app config](images/netbird-client-config.png){ width="300" }
 
-- VPN type: `IPsec VPN`
-- Connection Name: `ACC-UB`
-- Remote Gateway: `vpn-acc.unibuc.ro`
-- Authentication method: `Pre-shared key`
-- Pre-shared key value: please request this from the ACC-UB administrators
-- Username and password: the credentials you've been provided by the ACC administrators when your account was created
-- Advanced settings (**required** to match the server's settings):
-    - VPN settings:
-        - IKE: Version 2
-        - Address assignment: Mode Config
-    - Phase 1:
-        - IKE Proposal: AES256GCM + PRFSHA384 or AES256 + SHA256
-        - DH Group: 20 or 21
-    - Phase 2:
-        - IKE Proposal: AES256GCM + NONE or AES256 + SHA256
-        - Enable Perfect Forward Secrecy (PFS)
-        - DH Group: 21
+5. Save the configuration and click on _Connect_ (press the toggle). NetBird will open a new tab in your browser, logging you in against our identity provider.
 
-Furthermore, the only way to enable [EAP-TTLS](https://en.wikipedia.org/wiki/Extensible_Authentication_Protocol#EAP_Tunneled_Transport_Layer_Security_(EAP-TTLS)) support (which we require for authentication) is [to edit the client's internal XML configuration](https://community.fortinet.com/fortigate-3/technical-tip-how-to-enable-eap-ttls-for-ipsec-ikev2-tunnels-in-vpn-only-unlicensed-forticlient-213133). You have to go to the settings page, backup the configuration (save it to an XML file), edit the XML file to add `<eap_method>2</eap_method>` under the `<connection><ike_settings>` node, then re-import it using the restore button.
+6. You should now be able to access all of the ACC-UB resources.
 
-See also the images below.
+Try `ping hpc-ctrl01.acc-ub.local` to confirm that DNS resolution and the overlay network are working as expected.
 
-![FortiClient IPsec VPN configuration](images/forticlient-ipsec-vpn-config-start.png)
-![FortiClient IPsec Phase 1 & Phase 2 settings configuration](images/forticlient-ipsec-vpn-config-phases.png)
-![FortiClient IPsec XML config eap-method setting](images/forticlient-ipsec-vpn-config-eap-method.png)
+Let us know if you're having trouble setting up the VPN connection; we can help. The official [NetBird client troubleshooting guide](https://docs.netbird.io/help/troubleshooting-client) is also useful.
+
+
